@@ -12,7 +12,6 @@
 
 @implementation STPopoverByAppContextViewController {
     IBOutlet UIButton *_popoverButton;
-    IBOutlet UIButton *_popoverNavigationControllerButton;    
 }
 
 - (id)init
@@ -29,20 +28,12 @@
     [super viewDidLoad];
     
     [_popoverButton addTarget:self action:@selector(didTapPopoverButton) forControlEvents:UIControlEventTouchUpInside];
-    [_popoverNavigationControllerButton addTarget:self action:@selector(didTapPopoverNavigationControllerButton) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didTapPopoverButton
 {
     STPopoverByAppContextContentViewController *contentViewController = [[STPopoverByAppContextContentViewController alloc] init];
     [[STAppContext sharedAppContext] presentPopoverWithContentViewController:contentViewController fromRect:_popoverButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-}
-
-- (void)didTapPopoverNavigationControllerButton
-{
-    STPopoverByAppContextContentViewController *contentViewController = [[STPopoverByAppContextContentViewController alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:contentViewController];
-    [[STAppContext sharedAppContext] presentPopoverWithContentViewController:navigationController fromRect:_popoverNavigationControllerButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 @end
